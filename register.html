@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Registration Page</title>
+        <!--This page is created by Kyle Gause on 10/25/2022-->
+    </head>
+
+    <body>
+
+        <form onsubmit="return validate();" method="post">
+            <h1>Registration Page</h1>
+            <br>
+            <table>
+
+                <tr>
+                    <td>First Name: </td>
+                    <td> <input id="fName" type="text" required> </td>
+                </tr>
+                <tr>
+                    <td>Last Name: </td>
+                    <td> <input id="lName" type="text" required> </td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td> <input id="email" type="email" required> </td>
+                </tr>
+                <tr>
+                    <td>Select a Username: </td>
+                    <td> <input id="uName" type="text" required> </td>
+                </tr>
+                <tr>
+                    <td>Select a Password: </td>
+                    <td> <input id="pass" type="password" required> </td>
+                </tr>
+                <tr>
+                    <td> <button>Submit</button> </td>
+                    <td> <button>Reset</button> </td>
+                </tr>
+
+            </table>
+        </form>
+
+        <script>
+        
+            function validate() {
+                var letters = /^[A-Za-z]+$/;
+                var firstName = document.getElementById("fName").value;
+                var lastName = document.getElementById("lName").value;
+
+                if (!firstName.match(letters)) {
+                    alert("Not a valid First Name");
+                    return false;
+                }
+                if (!lastName.match(letters)) {
+                    alert("Not a valid Last Name");
+                    return false;
+                }
+            
+            }
+
+        </script>
+    
+    </body>
+
+</html>
