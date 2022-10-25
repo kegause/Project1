@@ -9,9 +9,10 @@
 
     <body>
 
-        <form onsubmit="return validate();" method="post">
+        <form action="register.php" onsubmit="return validate();" method="post">
             <h1>Registration Page</h1>
             <br>
+
             <table>
 
                 <tr>
@@ -24,7 +25,7 @@
                 </tr>
                 <tr>
                     <td>Email: </td>
-                    <td> <input id="email" type="email" required> </td>
+                    <td> <input id="email" type="text" required> </td>
                 </tr>
                 <tr>
                     <td>Select a Username: </td>
@@ -46,8 +47,10 @@
         
             function validate() {
                 var letters = /^[A-Za-z]+$/;
+                var mail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 var firstName = document.getElementById("fName").value;
                 var lastName = document.getElementById("lName").value;
+                var email = document.getElementById("email").value;
 
                 if (!firstName.match(letters)) {
                     alert("Not a valid First Name");
@@ -57,7 +60,12 @@
                     alert("Not a valid Last Name");
                     return false;
                 }
-            
+                if (!email.match(mail)) {
+                    alert("Not a valid Email Address");
+                    return false;
+                }
+
+                return true;
             }
 
         </script>
