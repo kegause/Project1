@@ -13,7 +13,7 @@
         } 
     }
     function pwOK($conID, $uName1, $pw1, &$fName, &$lName){
-        $SQL = " SELECT * FROM members";
+        $SQL = " SELECT * FROM Members";
         // the given password is encrypted before matching with the password in database
         // make sure the column names in the DB table are userName and password
         $SQL = $SQL . " WHERE userName = '$uName1' AND password = sha1('$pw1')";
@@ -34,11 +34,11 @@
         return false; 
     }
 // MAIN
-openDatabase($conID, $db);
-if (pwOK($conID,$uName1,$pw1,$fName, $lName)) {    //check password and if ok gets first name and last name    
-    echo "<h1> Welcome ". $fName . "  . $lName   . substr($db,3) </h1>";
-} else {
-    echo "<h1> User name or password is wrong- Try again <h1>"; 
-}
-$conID->close();        
+    openDatabase($conID, $db);
+    if (pwOK($conID,$uName1,$pw1,$fName, $lName)) {    //check password and if ok gets first name and last name    
+        echo "<h1> Welcome ". $fName . " $lName</h1>";
+    } else {
+        echo "<h1> User name or password is wrong- Try again <h1>"; 
+    }
+    $conID->close();        
 ?>  
