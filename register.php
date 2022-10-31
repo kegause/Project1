@@ -3,23 +3,38 @@
 //Gather data from client side HTML
     $fName = $_POST['fName'];
     $lName = $_POST['lName'];
-    $emial = $_POST['email'];
+    $email = $_POST['email'];
     $uName = $_POST['uName'];
     $pw = $_POST['pass'];
 
+//Global Variables
+    $conID; $db;
+
 //Functions
     function openDatabase(&$conID) {
-
+        $host = "localhost"; $db = "ACM8062"; $usr = "root"; $pw = "";
+        $conID = new mysqli($host, $usr, $pw, $db);
+        if ($conID->connect_error) {
+            die("Connection failed: " . $conID->connect_error);
+        }
     }
 
-    function write($conID, $fName, $lName, $emial, $uName, $pw) {
+    function write($conID, $fName, $lName, $email, $uName, $pw) {
+        $SQL = "INSERT INTO `Members` (`firstName`, `lastName`, `email`, `userName`, `password`) VALUES ('$fName', '$lName', '$email', '$uName', SHA1('$pw'))";
 
+        $result = $conID->query($SQL);
+
+        if (!$result) {
+            die("Query Error: " . $SQL . " :" . $conID->connect_error);
+        } else {
+            return true;
+        }
     }
 
 //Main
     //This program was written by Kyle Gause on 10/27/2022
     openDatabase($conID);
-    if (write($conID, $fName, $lName, $emial, $uName, $pw)) {
+    if (write($conID, $fName, $lName, $email, $uName, $pw)) {
         echo"<h1> Your information has been stored successfully . $fName</h1>";
     }
     $conID->close();
