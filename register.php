@@ -33,7 +33,7 @@
     //This program was written by Kyle Gause on 10/27/2022
     openDatabase($conID);
     if (write($conID, $fName, $lName, $email, $uName, $pw)) {
-        echo"<h1> Your information has been stored successfully . '$fName'. substr($db,2)</h1>";
+        echo"<h1> Your information has been stored successfully $fName</h1>";
     }
     $conID->close();
 ?>
