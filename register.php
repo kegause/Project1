@@ -7,9 +7,6 @@
     $uName = $_POST['uName'];
     $pw = $_POST['pass'];
 
-//Global Variables
-    $conID; $db;
-
 //Functions
     function openDatabase(&$conID) {
         $host = "localhost"; $db = "ACM8062"; $usr = "root"; $pw = "";
@@ -20,7 +17,8 @@
     }
 
     function write($conID, $fName, $lName, $email, $uName, $pw) {
-        $SQL = "INSERT INTO `Members` (`firstName`, `lastName`, `email`, `userName`, `password`) VALUES ('$fName', '$lName', '$email', '$uName', SHA1('$pw'))";
+        $SQL = " INSERT INTO Members (firstName, lastName, email, userName, password)";
+        $SQL = $SQL. " VALUES ('$fName', '$lName', '$email', '$uName', SHA1('$pw'))";
 
         $result = $conID->query($SQL);
 
@@ -35,7 +33,7 @@
     //This program was written by Kyle Gause on 10/27/2022
     openDatabase($conID);
     if (write($conID, $fName, $lName, $email, $uName, $pw)) {
-        echo"<h1> Your information has been stored successfully . $fName</h1>";
+        echo"<h1> Your information has been stored successfully . '$fName'. substr($db,2)</h1>";
     }
     $conID->close();
 ?>
